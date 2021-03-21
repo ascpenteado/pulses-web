@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 function Menu() {
   return (
     <div>
@@ -15,16 +15,13 @@ function Menu() {
               </div>
               <div>
                 <div className="ml-12 flex items-baseline space-x-4">
-                  <Link to="/questions" className="bg-blue-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                  <NavLink to="/questions" className="nav-link">
                     Perguntas
-                  </Link>
+                  </NavLink>
 
-                  <Link
-                    to="/dimensions"
-                    className="text-gray-300 hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
+                  <NavLink to="/dimensions" className="nav-link">
                     Dimensões
-                  </Link>
+                  </NavLink>
                 </div>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Btn from "../components/Btn";
 import Question from "../components/Question";
 
 function Questions() {
@@ -14,7 +15,7 @@ function Questions() {
         </div>
         <div>
           <Link to="/questions/new">
-            <button className="bg-green-400 text-white py-2 px-5 rounded">Criar Pergunta</button>
+            <Btn text="Criar Pergunta" bgColor="bg-green-400" textColor="text-white" />
           </Link>
         </div>
       </div>

@@ -1,3 +1,5 @@
+import Btn from "./Btn";
+
 function Question() {
   return (
     <li className="flex items-center">
@@ -10,8 +12,8 @@ function Question() {
           <span className="px-4">Você gosta de homeoffice?</span>
         </div>
         <div>
-          <button className="bg-blue-500 text-white py-2 px-5 rounded mr-4">Editar</button>
-          <button className="bg-red-500 text-white py-2 px-5 rounded">Excluir</button>
+          <Btn text="Editar" textColor="text-white" bgColor="bg-blue-500" extraClass="mr-4" />
+          <Btn text="Excluir" textColor="text-white" bgColor="bg-red-500" />
         </div>
       </div>
     </li>

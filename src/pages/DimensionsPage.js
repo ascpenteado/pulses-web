@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Btn from "../components/Btn";
 import Dimension from "../components/Dimension";
 
 function DimensionsPage() {
@@ -6,7 +7,7 @@ function DimensionsPage() {
     <div>
       <div className="flex justify-end">
         <Link to="/dimensions/new">
-          <button className="bg-green-400 text-white py-2 px-5 rounded">Criar Dimensão</button>
+          <Btn text="Criar Dimensão" bgColor="bg-green-400" textColor="text-white" />
         </Link>
       </div>
       <div>
