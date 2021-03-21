@@ -1,14 +1,20 @@
-import { Link, Redirect } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import BtnSmall from "../components/BtnSmall";
+import { DataContext } from "../contexts/DataContext";
 import API from "../services/api";
 
 function FormDimensionPage() {
+  const history = useHistory();
+  const { dimensions, setDimensions } = useContext(DataContext);
   const handleForm = async (e) => {
     e.preventDefault();
     const title = e.target.dimensionTitle.value;
     const request = await API.post("dimensions/", { title });
     if (request.status === 201) {
-      <Redirect to="/dimensions" />;
+      const data = [...dimensions, request.data];
+      setDimensions(data);
+      history.push("/dimensions");
     }
   };
 
