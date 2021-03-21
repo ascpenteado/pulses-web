@@ -48,7 +48,11 @@ function Question({ question }) {
             text="Excluir"
             textColor="text-white"
             bgColor="bg-red-500"
-            onClick={() => handleDeleteQuestion(question.questionId)}
+            onClick={() => {
+              if (window.confirm("Você realmente deseja excluir essa pergunta?")) {
+                handleDeleteQuestion(question.questionId);
+              }
+            }}
           />
         </div>
       </div>
