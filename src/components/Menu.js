@@ -4,7 +4,7 @@ function Menu() {
     <div>
       <nav className="bg-blue-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <img
@@ -13,7 +13,7 @@ function Menu() {
                   alt="Logo Pulses"
                 />
               </div>
-              <div>
+              <div className="flex justify-end">
                 <div className="ml-12 flex items-baseline space-x-4">
                   <NavLink to="/questions" className="nav-link">
                     Perguntas
