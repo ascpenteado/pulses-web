@@ -8,6 +8,7 @@ import DimensionFilter from "../components/DimensionFilter";
 
 function Questions() {
   const { questions } = useContext(DataContext);
+  const data = [...questions];
   const [filteredQuestions, setFilteredQuestions] = useState();
   const applyFilter = async (e) => {
     const value = e.target.value;
@@ -20,9 +21,8 @@ function Questions() {
   };
 
   useEffect(() => {
-    const data = Object.assign([], questions);
     setFilteredQuestions(data);
-  }, []);
+  }, [questions]);
 
   return (
     <div>
@@ -33,7 +33,7 @@ function Questions() {
           <DimensionFilter onChange={applyFilter} />
         </div>
         <div>
-          <Link to="/questions/new">
+          <Link to="/new">
             <Btn text="Criar Pergunta" bgColor="bg-green-400" textColor="text-white" />
           </Link>
         </div>
