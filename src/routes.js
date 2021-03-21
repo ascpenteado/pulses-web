@@ -10,9 +10,9 @@ function Routes() {
       <Route path="/dimensions" exact component={DimensionsPage} />
       <Route path="/dimensions/new" exact component={FormDimensionPage} />
       <Route path="/dimensions/edit/:id" exact component={FormDimensionPage} />
-      <Route path="/questions" exact component={QuestionsPage} />
-      <Route path="/questions/new" exact component={FormQuestionPage} />
-      <Route path="/questions/edit/:id" exact component={FormQuestionPage} />
+      <Route path="/" exact component={QuestionsPage} />
+      <Route path="/new" exact component={FormQuestionPage} />
+      <Route path="/edit/:id" exact component={FormQuestionPage} />
     </Switch>
   );
 }

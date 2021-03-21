@@ -15,7 +15,7 @@ function Menu() {
               </div>
               <div className="flex justify-end">
                 <div className="ml-12 flex items-baseline space-x-4">
-                  <NavLink to="/questions" className="nav-link">
+                  <NavLink to="/" className="nav-link">
                     Perguntas
                   </NavLink>
 

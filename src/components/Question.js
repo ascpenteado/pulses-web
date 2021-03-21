@@ -41,7 +41,7 @@ function Question({ question }) {
           <span className="px-4">{question.questionText}</span>
         </div>
         <div>
-          <Link to={`questions/edit/${question.questionId}`}>
+          <Link to={`edit/${question.questionId}`}>
             <Btn text="Editar" textColor="text-white" bgColor="bg-blue-500" extraClass="mr-4" />
           </Link>
           <Btn
