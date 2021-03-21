@@ -4,6 +4,7 @@ import BtnSmall from "../components/BtnSmall";
 import { DataContext } from "../contexts/DataContext";
 import API from "../services/api";
 import Header from "../components/Header";
+import { toast } from "react-toastify";
 
 function FormDimensionPage() {
   const { dimensions, setDimensions } = useContext(DataContext);
@@ -24,6 +25,7 @@ function FormDimensionPage() {
     if (id) {
       const request = await API.put(`dimensions/${id}`, { title });
       if (request.status === 200) {
+        toast.success("Dimensão atualizada :)");
         const newState = dimensions.filter((el) => el.dimensionId !== Number(id));
         setDimensions([...newState, request.data]);
         history.push("/dimensions");
@@ -31,6 +33,7 @@ function FormDimensionPage() {
     } else {
       const request = await API.post("dimensions/", { title });
       if (request.status === 201) {
+        toast.success("Dimensão registrada :)");
         const data = [...dimensions, request.data];
         setDimensions(data);
         history.push("/dimensions");

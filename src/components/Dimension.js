@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { DataContext } from "../contexts/DataContext";
 import API from "../services/api";
 import Btn from "./Btn";
@@ -7,9 +8,13 @@ import Btn from "./Btn";
 function Dimension({ dimension }) {
   const { dimensions, setDimensions } = useContext(DataContext);
   const handleDeleteDimension = async (id) => {
-    await API.delete(`dimensions/${id}`);
-    const data = dimensions.filter((dimension) => dimension.dimensionId !== id);
-    setDimensions(data);
+    try {
+      await API.delete(`dimensions/${id}`);
+      const data = dimensions.filter((dimension) => dimension.dimensionId !== id);
+      setDimensions(data);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   };
 
   return (

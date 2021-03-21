@@ -5,6 +5,7 @@ import DimensionSelect from "../components/DimensionSelect";
 import { DataContext } from "../contexts/DataContext";
 import API from "../services/api";
 import Header from "../components/Header";
+import { toast } from "react-toastify";
 
 function FormQuestionPage() {
   const history = useHistory();
@@ -18,18 +19,28 @@ function FormQuestionPage() {
     const text = e.target.questionText.value;
     const dimension = e.target[1].value;
     if (id) {
-      const request = await API.put(`questions/${id}`, { text, dimension });
-      if (request.status === 200) {
-        const newState = questions.filter((el) => el.questionId !== Number(id));
-        setQuestions([...newState, request.data]);
-        history.push("/questions");
+      try {
+        const request = await API.put(`questions/${id}`, { text, dimension });
+        if (request.status === 200) {
+          const newState = questions.filter((el) => el.questionId !== Number(id));
+          setQuestions([...newState, request.data]);
+          toast.success("Pergunta atualizada :)");
+          history.push("/");
+        }
+      } catch (error) {
+        toast.error(error.response.data.message);
       }
     } else {
-      const request = await API.post("questions/", { text, dimension });
-      if (request.status === 201) {
-        const data = [...questions, request.data];
-        setQuestions(data);
-        history.push("/questions");
+      try {
+        const request = await API.post("questions/", { text, dimension });
+        if (request.status === 201) {
+          const data = [...questions, request.data];
+          setQuestions(data);
+          toast.success("Pergunta registrada :)");
+          history.push("/");
+        }
+      } catch (error) {
+        toast.error(error.response.data.message);
       }
     }
   };
@@ -73,7 +84,7 @@ function FormQuestionPage() {
           <DimensionSelect value={dimensionInput} onChange={handleDimensionInputChange} />
           <div className="mt-4">
             <BtnSmall text="Salvar" bgColor="bg-green-400" extraClass="mr-4" textColor="text-white" />
-            <Link to="/questions">
+            <Link to="/">
               <BtnSmall text="Cancelar" bgColor="bg-gray-300" extraClass="mr-4" textColor="text-gray-900" />
             </Link>
           </div>
