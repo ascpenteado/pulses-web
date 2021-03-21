@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BtnSmall from "../components/BtnSmall";
 
 function FormQuestionPage() {
   return (
@@ -13,9 +14,9 @@ function FormQuestionPage() {
             <option>Estrutura</option>
           </select>
           <div>
-            <button className="bg-green-400 text-white py-1 px-4 rounded mr-4">Salvar</button>
+            <BtnSmall text="Salvar" bgColor="bg-green-400" extraClass="mr-4" textColor="text-white" />
             <Link to="/questions">
-              <button className="bg-gray-300 text-gray-900 py-1 px-4 rounded mr-4">Cancelar</button>
+              <BtnSmall text="Cancelar" bgColor="bg-gray-300" extraClass="mr-4" textColor="text-gray-900" />
             </Link>
           </div>
         </div>
