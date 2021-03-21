@@ -6,17 +6,17 @@ const DataProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]);
   const [dimensions, setDimensions] = useState([]);
 
-  const getDimensions = async () => {
-    const result = await API.get("dimensions/");
-    setDimensions(result.data);
-  };
-
-  const getQuestions = async () => {
-    const result = await API.get("questions/");
-    setQuestions(result.data);
-  };
-
   useEffect(() => {
+    async function getDimensions() {
+      const result = await API.get("dimensions/");
+      setDimensions(result.data);
+    }
+
+    async function getQuestions() {
+      const result = await API.get("questions/");
+      setQuestions(result.data);
+    }
+
     getDimensions();
     getQuestions();
   }, []);
