@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 
-function DimensionSelect({ onChange }) {
+function DimensionSelect({ onChange, value }) {
   const { dimensions } = useContext(DataContext);
 
   return (
-    <select className="rounded-sm p-2" onChange={onChange} defaultValue="">
+    <select className="rounded-sm p-2" onChange={onChange} value={value}>
       <option hidden value="">
         Selecionar...
       </option>

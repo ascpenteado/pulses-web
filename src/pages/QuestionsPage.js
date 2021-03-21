@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../contexts/DataContext";
 import Question from "../components/Question";
 import Btn from "../components/Btn";
@@ -7,8 +7,8 @@ import Header from "../components/Header";
 import DimensionFilter from "../components/DimensionFilter";
 
 function Questions() {
-  const { questions, setQuestions } = useContext(DataContext);
-  const [filteredQuestions, setFilteredQuestions] = useState([...questions]);
+  const { questions } = useContext(DataContext);
+  const [filteredQuestions, setFilteredQuestions] = useState();
   const applyFilter = async (e) => {
     const value = e.target.value;
     if (value === "all") {
@@ -18,6 +18,12 @@ function Questions() {
       setFilteredQuestions(filtered);
     }
   };
+
+  useEffect(() => {
+    const data = Object.assign([], questions);
+    setFilteredQuestions(data);
+  }, []);
+
   return (
     <div>
       <Header>Perguntas</Header>
@@ -35,9 +41,11 @@ function Questions() {
       <div>
         <ul className="py-4">
           {filteredQuestions
-            ? filteredQuestions.map((question) => {
-                return <Question key={question.questionId} question={question} />;
-              })
+            ? filteredQuestions
+                .sort((a, b) => a.createdAt - b.createdAt)
+                .map((question) => {
+                  return <Question key={question.questionId} question={question} />;
+                })
             : "Carregando..."}
         </ul>
       </div>
