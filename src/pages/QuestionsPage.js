@@ -1,16 +1,22 @@
 import { Link } from "react-router-dom";
-import Btn from "../components/Btn";
+import { useContext } from "react";
+import { DataContext } from "../contexts/DataContext";
 import Question from "../components/Question";
+import Btn from "../components/Btn";
 
 function Questions() {
+  const { questions, dimensions } = useContext(DataContext);
   return (
     <div>
       <div className="flex justify-between">
         <div>
           <span className="mr-4">Filtro:</span>
           <select className="rounded-sm p-2">
-            <option>Estrutura</option>
-            <option>Estrutura</option>
+            {dimensions
+              ? dimensions.map((dimension) => {
+                  return <option key={dimension.dimensionId}>{dimension.dimensionTitle}</option>;
+                })
+              : "Criar dimensão"}
           </select>
         </div>
         <div>
@@ -21,9 +27,11 @@ function Questions() {
       </div>
       <div>
         <ul className="py-4">
-          <Question />
-          <Question />
-          <Question />
+          {questions
+            ? questions.map((question) => {
+                return <Question key={question.questionId} question={question} />;
+              })
+            : "Carregando..."}
         </ul>
       </div>
     </div>
