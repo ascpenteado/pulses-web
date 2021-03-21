@@ -4,6 +4,7 @@ import BtnSmall from "../components/BtnSmall";
 import DimensionSelect from "../components/DimensionSelect";
 import { DataContext } from "../contexts/DataContext";
 import API from "../services/api";
+import Header from "../components/Header";
 
 function FormQuestionPage() {
   const history = useHistory();
@@ -22,6 +23,7 @@ function FormQuestionPage() {
   };
   return (
     <div>
+      <Header>Pergunta</Header>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col max-w-md">
           <label>Texto da pergunta:</label>
