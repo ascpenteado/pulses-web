@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 import Question from "../components/Question";
 import Btn from "../components/Btn";
+import DimensionSelect from "../components/DimensionSelect";
 
 function Questions() {
   const { questions, dimensions } = useContext(DataContext);
@@ -11,13 +12,7 @@ function Questions() {
       <div className="flex justify-between">
         <div>
           <span className="mr-4">Filtro:</span>
-          <select className="rounded-sm p-2">
-            {dimensions
-              ? dimensions.map((dimension) => {
-                  return <option key={dimension.dimensionId}>{dimension.dimensionTitle}</option>;
-                })
-              : "Criar dimensão"}
-          </select>
+          <DimensionSelect />
         </div>
         <div>
           <Link to="/questions/new">

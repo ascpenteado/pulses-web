@@ -7,7 +7,11 @@ function DimensionSelect() {
     <select className="rounded-sm p-2">
       {dimensions
         ? dimensions.map((dimension) => {
-            return <option key={dimension.dimensionId}>{dimension.dimensionTitle}</option>;
+            return (
+              <option key={dimension.dimensionId} value={dimension.dimensionId}>
+                {dimension.dimensionTitle}
+              </option>
+            );
           })
         : "Criar dimensão"}
     </select>
