@@ -1,4 +1,3 @@
-import Header from "./components/Header";
 import Main from "./components/Main";
 import Menu from "./components/Menu";
 import DataProvider from "./contexts/DataContext";
@@ -9,7 +8,6 @@ function App() {
     <>
       <DataProvider>
         <Menu />
-        <Header />
         <Main>
           <Routes />
         </Main>
