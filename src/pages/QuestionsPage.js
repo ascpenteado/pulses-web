@@ -1,18 +1,30 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DataContext } from "../contexts/DataContext";
 import Question from "../components/Question";
 import Btn from "../components/Btn";
-import DimensionSelect from "../components/DimensionSelect";
+import Header from "../components/Header";
+import DimensionFilter from "../components/DimensionFilter";
 
 function Questions() {
-  const { questions, dimensions } = useContext(DataContext);
+  const { questions, setQuestions } = useContext(DataContext);
+  const [filteredQuestions, setFilteredQuestions] = useState([...questions]);
+  const applyFilter = async (e) => {
+    const value = e.target.value;
+    if (value === "all") {
+      setFilteredQuestions([...questions]);
+    } else {
+      const filtered = questions.filter((question) => question.dimension.dimensionId === Number(value));
+      setFilteredQuestions(filtered);
+    }
+  };
   return (
     <div>
+      <Header>Perguntas</Header>
       <div className="flex justify-between">
         <div>
           <span className="mr-4">Filtro:</span>
-          <DimensionSelect />
+          <DimensionFilter onChange={applyFilter} />
         </div>
         <div>
           <Link to="/questions/new">
@@ -22,8 +34,8 @@ function Questions() {
       </div>
       <div>
         <ul className="py-4">
-          {questions
-            ? questions.map((question) => {
+          {filteredQuestions
+            ? filteredQuestions.map((question) => {
                 return <Question key={question.questionId} question={question} />;
               })
             : "Carregando..."}
