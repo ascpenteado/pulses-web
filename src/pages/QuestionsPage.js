@@ -9,7 +9,6 @@ import NoData from "../components/NoData";
 
 function Questions() {
   const { questions } = useContext(DataContext);
-  const data = [...questions];
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const applyFilter = async (e) => {
     const value = e.target.value;
@@ -22,6 +21,7 @@ function Questions() {
   };
 
   useEffect(() => {
+    const data = [...questions];
     setFilteredQuestions(data);
   }, [questions]);
 
