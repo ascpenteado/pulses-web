@@ -27,36 +27,38 @@ function Question({ question }) {
   };
 
   return (
-    <li className="flex items-center">
-      <div className="mr-4">
-        <input
-          type="checkbox"
-          checked={question.isActive ? true : false}
-          onChange={() => handleActiveCheckbox(question.questionId)}
-        />
-      </div>
-      <div className="flex w-full border-2 mb-2 py-2 px-4 rounded justify-between items-center">
-        <div className="flex">
-          <span className="px-4 border-r-2">{question.dimension.dimensionTitle}</span>
-          <span className="px-4">{question.questionText}</span>
-        </div>
-        <div>
-          <Link to={`edit/${question.questionId}`}>
-            <Btn text="Editar" textColor="text-white" bgColor="bg-blue-500" extraClass="mr-4" />
-          </Link>
-          <Btn
-            text="Excluir"
-            textColor="text-white"
-            bgColor="bg-red-500"
-            onClick={() => {
-              if (window.confirm("Você realmente deseja excluir essa pergunta?")) {
-                handleDeleteQuestion(question.questionId);
-              }
-            }}
+    <div>
+      <li className={`flex items-center ${question.isActive == false ? "text-gray-400" : ""}`}>
+        <div className="mr-4">
+          <input
+            type="checkbox"
+            checked={question.isActive ? true : false}
+            onChange={() => handleActiveCheckbox(question.questionId)}
           />
         </div>
-      </div>
-    </li>
+        <div className="flex w-full border-2 mb-2 py-2 px-4 rounded justify-between items-center">
+          <div className="flex">
+            <span className="px-4 border-r-2">{question.dimension.dimensionTitle}</span>
+            <span className="px-4">{question.questionText}</span>
+          </div>
+          <div>
+            <Link to={`edit/${question.questionId}`}>
+              <Btn text="Editar" textColor="text-white" bgColor="bg-blue-500" extraClass="mr-4" />
+            </Link>
+            <Btn
+              text="Excluir"
+              textColor="text-white"
+              bgColor="bg-red-500"
+              onClick={() => {
+                if (window.confirm("Você realmente deseja excluir essa pergunta?")) {
+                  handleDeleteQuestion(question.questionId);
+                }
+              }}
+            />
+          </div>
+        </div>
+      </li>
+    </div>
   );
 }
 
