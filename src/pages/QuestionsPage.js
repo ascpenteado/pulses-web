@@ -5,11 +5,12 @@ import Question from "../components/Question";
 import Btn from "../components/Btn";
 import Header from "../components/Header";
 import DimensionFilter from "../components/DimensionFilter";
+import NoData from "../components/NoData";
 
 function Questions() {
   const { questions } = useContext(DataContext);
   const data = [...questions];
-  const [filteredQuestions, setFilteredQuestions] = useState();
+  const [filteredQuestions, setFilteredQuestions] = useState([]);
   const applyFilter = async (e) => {
     const value = e.target.value;
     if (value === "all") {
@@ -40,13 +41,15 @@ function Questions() {
       </div>
       <div>
         <ul className="py-4">
-          {filteredQuestions
-            ? filteredQuestions
-                .sort((a, b) => a.createdAt - b.createdAt)
-                .map((question) => {
-                  return <Question key={question.questionId} question={question} />;
-                })
-            : "Carregando..."}
+          {filteredQuestions.length > 0 ? (
+            filteredQuestions
+              .sort((a, b) => a.createdAt - b.createdAt)
+              .map((question) => {
+                return <Question key={question.questionId} question={question} />;
+              })
+          ) : (
+            <NoData />
+          )}
         </ul>
       </div>
     </div>

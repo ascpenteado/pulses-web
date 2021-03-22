@@ -23,20 +23,28 @@ function FormDimensionPage() {
 
     // Check if it is an update
     if (id) {
-      const request = await API.put(`dimensions/${id}`, { title });
-      if (request.status === 200) {
-        toast.success("Dimensão atualizada :)");
-        const newState = dimensions.filter((el) => el.dimensionId !== Number(id));
-        setDimensions([...newState, request.data]);
-        history.push("/dimensions");
+      try {
+        const request = await API.put(`dimensions/${id}`, { title });
+        if (request.status === 200) {
+          toast.success("Dimensão atualizada :)");
+          const newState = dimensions.filter((el) => el.dimensionId !== Number(id));
+          setDimensions([...newState, request.data]);
+          history.push("/dimensions");
+        }
+      } catch (error) {
+        toast.error(error.response.data.message);
       }
     } else {
-      const request = await API.post("dimensions/", { title });
-      if (request.status === 201) {
-        toast.success("Dimensão registrada :)");
-        const data = [...dimensions, request.data];
-        setDimensions(data);
-        history.push("/dimensions");
+      try {
+        const request = await API.post("dimensions/", { title });
+        if (request.status === 201) {
+          toast.success("Dimensão registrada :)");
+          const data = [...dimensions, request.data];
+          setDimensions(data);
+          history.push("/dimensions");
+        }
+      } catch (error) {
+        toast.error(error.response.data.message);
       }
     }
   };

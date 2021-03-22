@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { DataContext } from "../contexts/DataContext";
 import Btn from "../components/Btn";
 import Dimension from "../components/Dimension";
 import Header from "../components/Header";
-import { DataContext } from "../contexts/DataContext";
+import NoData from "../components/NoData";
 
 function DimensionsPage() {
   const { dimensions } = useContext(DataContext);
@@ -17,15 +18,17 @@ function DimensionsPage() {
       </div>
       <div>
         <ul className="py-4">
-          {dimensions
-            ? dimensions
-                .sort((a, b) => {
-                  return b.dimensionTitle.toLowerCase() - a.dimensionTitle.toLowerCase();
-                })
-                .map((dimension) => {
-                  return <Dimension key={dimension.dimensionId} dimension={dimension} />;
-                })
-            : "Carregando..."}
+          {dimensions.length > 0 ? (
+            dimensions
+              .sort((a, b) => {
+                return b.dimensionTitle.toLowerCase() - a.dimensionTitle.toLowerCase();
+              })
+              .map((dimension) => {
+                return <Dimension key={dimension.dimensionId} dimension={dimension} />;
+              })
+          ) : (
+            <NoData />
+          )}
         </ul>
       </div>
     </div>

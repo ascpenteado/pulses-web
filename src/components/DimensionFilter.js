@@ -5,7 +5,7 @@ function DimensionSelect({ onChange }) {
   const { dimensions } = useContext(DataContext);
 
   return (
-    <select className="rounded-sm p-2" onChange={onChange} defaultValue="all">
+    <select className="rounded p-2 border-2 bg-white" onChange={onChange} defaultValue="all">
       <option value="all">-- Todas --</option>
       {dimensions
         ? dimensions.map((dimension) => {
