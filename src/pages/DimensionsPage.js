@@ -21,7 +21,14 @@ function DimensionsPage() {
           {dimensions.length > 0 ? (
             dimensions
               .sort((a, b) => {
-                return b.dimensionTitle.toLowerCase() - a.dimensionTitle.toLowerCase();
+                if (b.dimensionTitle.toLowerCase() > a.dimensionTitle.toLowerCase()) {
+                  return -1;
+                }
+                if (b.dimensionTitle.toLowerCase() < a.dimensionTitle.toLowerCase()) {
+                  return 1;
+                }
+
+                return 0;
               })
               .map((dimension) => {
                 return <Dimension key={dimension.dimensionId} dimension={dimension} />;
